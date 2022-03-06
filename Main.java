@@ -10,6 +10,9 @@ public class Main {
         List<Player> players = new ArrayList<>();
         players.add(new HumanPlayer("Omer"));
         Blackjack blackjack = new Blackjack(players);
-        blackjack.playRound();
+        while (true){
+            blackjack.playRound();
+        }
+
     }
 }

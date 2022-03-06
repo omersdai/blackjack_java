@@ -14,16 +14,18 @@ public class HumanPlayer extends Player{
     }
 
     public double placeBet(){
-        System.out.println(name + "\tBalance: $" + balance);
-        System.out.print("Place your bet: ");
-        double bet = sc.nextDouble();
-
-        while(bet < 0 || balance < bet){
-            System.out.println("Enter a valid bet: ");
-            bet = sc.nextDouble();
-        }
-        balance -= bet;
-        return bet;
+        balance -= 31;
+        return 31;
+//        System.out.println(name + "\tBalance: $" + balance);
+//        System.out.print("Place your bet: ");
+//        double bet = sc.nextDouble();
+//
+//        while(bet < 0 || balance < bet){
+//            System.out.println("Enter a valid bet: ");
+//            bet = sc.nextDouble();
+//        }
+//        balance -= bet;
+//        return bet;
     }
 
     public int chooseOption(int size){

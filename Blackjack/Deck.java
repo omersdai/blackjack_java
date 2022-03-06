@@ -39,6 +39,10 @@ public class Deck {
         return card;
     }
 
+    public void addCards(List<Card> cards){
+        deck.addAll(cards);
+    }
+
     @Override
     public String toString() {
         return deck.toString();

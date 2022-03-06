@@ -61,6 +61,12 @@ public abstract class Player {
         return sb.toString();
     }
 
+    public List<Card> giveHand(){
+        List<Card> hand = this.hand;
+        this.hand = new ArrayList<>();
+        return hand;
+    }
+
 
     public void adjustBalance(double amount){
         balance += amount;
@@ -69,6 +75,10 @@ public abstract class Player {
 
     public String getName() {
         return name;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
     @Override

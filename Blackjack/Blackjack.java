@@ -27,11 +27,16 @@ public class Blackjack {
 
     public void playRound(){
         int n = players.size();
+        printColumn();
         System.out.println("ROUND " + ++round);
         printColumn();
+        printBalances();
+        printColumn();
+
         for(int i = 0; i < n; i++){
             Player player = players.get(i);
             bets[i] = player.placeBet();
+            dealer.adjustBalance(bets[i]);
             System.out.println(player.getName() + " bet $" + bets[i]);
             printColumn();
         }
@@ -41,9 +46,8 @@ public class Blackjack {
             dealCard(player, true);
         }
 
-        Card openCard = dealCard(dealer, true);
-        Card hiddenCard = dealCard(dealer, false);
-
+        dealCard(dealer, true);
+        dealCard(dealer, false);
         printColumn();
 
         // Go around the table
@@ -68,16 +72,18 @@ public class Blackjack {
         for(int i = 0; i < n; i++){
             Player player = players.get(i);
             int count = player.countHand();
+            deck.addCards(player.giveHand());
             if(bets[i] == null) continue;
             if(21 < dealerCount || dealerCount < count){
                 System.out.println(player.getName() + " won the round with " + count);
                 giveMoney(i, 2);
             } else{
                 System.out.println(player.getName() + " lost the round with " + count);
+                bets[i] = null;
             }
             printColumn();
         }
-
+        deck.addCards(dealer.giveHand());
     }
 
     private void ask(int idx){
@@ -102,7 +108,6 @@ public class Blackjack {
 
         if(count > 21){
             System.out.println(player.getName() + " busted with " + count);
-            dealer.adjustBalance(bets[idx]);
             bets[idx] = null;
         }
         else if(player.countHand() == 21){
@@ -128,6 +133,13 @@ public class Blackjack {
         player.adjustBalance(earning);
         System.out.println(player.getName() + " earned $" + earning);
         bets[idx] = null;
+    }
+
+    private void printBalances(){
+        System.out.println(dealer.getName() + ":\t$" + dealer.getBalance());
+        for(Player player : players){
+            System.out.println(player.getName() + ":\t$" + player.getBalance());
+        }
     }
 
     private void printColumn(){
