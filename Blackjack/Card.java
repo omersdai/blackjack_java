@@ -5,8 +5,6 @@ import java.util.Map;
 import static java.util.Map.entry;
 
 public class Card {
-    private final int suit;
-    private final int rank;
 
     // Kinds of suits
     public final static int DIAMONDS = 1;
@@ -54,9 +52,11 @@ public class Card {
             entry(KING, "King")
     );
 
-
-
     public final static int[] RANKS = {ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING};
+    
+    
+    private final int suit;
+    private final int rank;
 
     public Card(int suit, int rank){
         this.suit = suit;
